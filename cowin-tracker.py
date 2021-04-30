@@ -1,6 +1,8 @@
 #Importing the required libraries
 import requests
 import json
+import smtplib
+import os
 
 #Function that converts json object in Human Readable Form
 def jprint(obj):
@@ -44,7 +46,10 @@ if res.status_code == 200:
             sessions.append(obj["sessions"][i]["date"])
             sessions.append(obj["sessions"][i]["available_capacity"])
             sessions.append(obj["sessions"][i]["vaccine"])
-        result_obj[key] = {"name" : name,"district_name" : district_name,"block_name" : block_name, "pincode" : pincode, "sessions" : sessions}
+        result_obj[key] = {"name" : name,"district_name" : district_name,"block_name" : block_name, "pincode" : pincode, "date_capacity_brand" : sessions}
         key = key + 1
 
-print(result_obj)
+# for k,v in result_obj.items():
+#     jprint(v)       #This is where you json.dumps() into email body
+
+
