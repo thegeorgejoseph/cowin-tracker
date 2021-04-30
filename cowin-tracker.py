@@ -3,12 +3,7 @@ import requests
 import json
 import smtplib
 import os
-
-#Function that converts json object in Human Readable Form
-def jprint(obj):
-    # create a formatted string of the Python JSON object
-    text = json.dumps(obj, sort_keys=True, indent=4)
-    print(text)
+from creds import emails,pws
 
 #Code that can be used to generate the State ID's
 # for i in range(1,40):
@@ -20,11 +15,12 @@ def jprint(obj):
 
 # For our purposes. state_id = 17 is what we want to generate the 
 
+
 #Setting up the parameters that need to be passed
 parameters = {
     "header":"hi_IN",
     "date":"01-05-2021",
-    "district_id":"270",
+    "district_id":"307",
 
 }
 
@@ -46,10 +42,34 @@ if res.status_code == 200:
             sessions.append(obj["sessions"][i]["date"])
             sessions.append(obj["sessions"][i]["available_capacity"])
             sessions.append(obj["sessions"][i]["vaccine"])
-        result_obj[key] = {"name" : name,"district_name" : district_name,"block_name" : block_name, "pincode" : pincode, "date_capacity_brand" : sessions}
+        result_obj[key] = {"name" : name,"district_name" : district_name,"block_name" : block_name, "pincode" : pincode, "date_availability_vaccine-brand" : sessions}
         key = key + 1
 
-# for k,v in result_obj.items():
-#     jprint(v)       #This is where you json.dumps() into email body
+    with smtplib.SMTP('smtp.gmail.com',587) as smtp:
+        smtp.ehlo()
+        smtp.starttls()
+        smtp.ehlo()
 
+        smtp.login(emails,pws)
+        subject = 'YOU HAVE AN UPDATE FROM COWIN TRACKER'
+        body = ''
+        for k,v in result_obj.items():
+            body = body + json.dumps(v,indent=3) + '\n'
+        msg = f"Subject:{subject}\n\n\n{body}"
+
+        if result_obj:
+            smtp.sendmail(emails,emails,msg) #Sender,Receiver,Message
+else:
+    with smtplib.SMTP('smtp.gmail.com',587) as smtp:
+        smtp.ehlo()
+        smtp.starttls()
+        smtp.ehlo()
+
+        smtp.login(emails,pws)
+        subject = 'COWIN TRACKER CRASHED'
+        body = 'There was an error with accessing the API'
+        msg = f"Subject:{subject}\n\n\n{body}"
+
+        if result_obj:
+            smtp.sendmail(emails,emails,msg) 
 
