@@ -20,7 +20,7 @@ from creds import emails,pws
 parameters = {
     "header":"hi_IN",
     "date":"01-05-2021",
-    "district_id":"307",
+    "district_id":"108",
 
 }
 

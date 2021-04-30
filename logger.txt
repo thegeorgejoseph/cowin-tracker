@@ -1,0 +1,4 @@
+/Users/thegeorgejoseph/opt/anaconda3/bin/python: can't open file '/Users/thegeorgejoseph/Documents/GitHub/cowin-tracker/cowin-tracker.py': [Errno 1] Operation not permitted
+/Users/thegeorgejoseph/opt/anaconda3/bin/python: can't open file '/Users/thegeorgejoseph/Documents/GitHub/cowin-tracker/cowin-tracker.py': [Errno 1] Operation not permitted
+/Users/thegeorgejoseph/opt/anaconda3/bin/python: can't open file '/Users/thegeorgejoseph/Documents/GitHub/cowin-tracker/cowin-tracker.py': [Errno 1] Operation not permitted
+/Users/thegeorgejoseph/opt/anaconda3/bin/python: can't open file '/Users/thegeorgejoseph/Documents/GitHub/cowin-tracker/cowin-tracker.py': [Errno 1] Operation not permitted
