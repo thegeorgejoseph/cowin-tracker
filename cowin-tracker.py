@@ -32,15 +32,19 @@ res  = requests.get("https://cdn-api.co-vin.in/api/v2/appointment/sessions/publi
 
 if res.status_code == 200:
     data = res.json()
+    result_obj = {}
+    key=0
     for obj in data['centers']:
-        print(obj["name"])
-        print(obj["district_name"])
-        print(obj["block_name"])
-        print(obj["pincode"])
+        name = obj["name"]
+        district_name = obj["district_name"]
+        block_name = obj["block_name"]
+        pincode = obj["pincode"]
+        sessions = []
         for i in range(len(obj["sessions"])):
-            print(obj["sessions"][i]["date"])
-            print(obj["sessions"][i]["available_capacity"])
-            print(obj["sessions"][i]["vaccine"])
-        print("******")
+            sessions.append(obj["sessions"][i]["date"])
+            sessions.append(obj["sessions"][i]["available_capacity"])
+            sessions.append(obj["sessions"][i]["vaccine"])
+        result_obj[key] = {"name" : name,"district_name" : district_name,"block_name" : block_name, "pincode" : pincode, "sessions" : sessions}
+        key = key + 1
 
-        
+print(result_obj)
