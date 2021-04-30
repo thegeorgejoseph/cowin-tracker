@@ -11,3 +11,4 @@ pws = 'theGoogleGeneratedPasswordHere'\n
 Tip: Use the code that has been commented out in the script if you do not know what your state_id is \n
 > Replace the state_id parameter value in the Parameters Dictionary to change the script to run for your particular state.\n
 
+![image](https://user-images.githubusercontent.com/37734939/116748223-beb0dc00-aa1c-11eb-8ee1-326d280a15c4.png)
