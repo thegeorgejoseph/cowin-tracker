@@ -4,6 +4,7 @@ import json
 import smtplib
 import os
 from creds import emails,pws
+import datetime 
 
 #Code that can be used to generate the State ID's
 # for i in range(1,40):
@@ -17,13 +18,13 @@ from creds import emails,pws
 
 
 #Setting up the parameters that need to be passed
+date = datetime.datetime.today()
 parameters = {
     "header":"hi_IN",
-    "date":"01-05-2021",
-    "district_id":"108",
+    "date":date.strftime("%d-%m-%Y"),
+    "district_id":"307",
 
 }
-
 
 #Hitting the COWIN Public API  
 res  = requests.get("https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict",params=parameters)
